@@ -104,13 +104,24 @@ function checkRoundWinner(playerPick, computerPick) {
     }
 
     if (winnerIs == 'player') {
-        playerResultElem.innerHTML = "Win!";
+        playerResultElem.innerHTML = "Win! :)";
+        computerResultElem.innerHTML = "Lost :(";
         player.score++;
     } else if (winnerIs == 'computer') {
-        computerResultElem.innerHTML = "Win!";
+        computerResultElem.innerHTML = "Win! :)";
+        playerResultElem.innerHTML = "Lost :(";
         computer.score++;
+    } 
+setGamePoints();
+if (player.score == 10 ) {
+        playerResultElem.innerHTML = "You are the WINNER!!!"
+        computerResultElem.innerHTML = "You lost";
+        pickElem.style.display = 'none';
+    } else if (computer.score == 10) {
+        computerResultElem.innerHTML = "You are the WINNER!!!";
+        playerResultElem.innerHTML = "You lost"
+        pickElem.style.display = 'none';
     }
-
 }
 
 
@@ -128,5 +139,5 @@ function playerPick(playerPick) {
 function setGamePoints() {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
+    
 }
-setGamePoints();
