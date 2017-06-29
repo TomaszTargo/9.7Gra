@@ -63,11 +63,11 @@ console.log('newGame');
 
 //wybór gracza
 var pickRock = document.getElementById('js-playerPick_rock'),
-     pickPaper = document.getElementById('js-playerPick_paper'),
-     pickScissors = document.getElementById('js-playerPick_scissors');
-pickRock.addEventListener('click', function() { playerPick('rock') });
-pickPaper.addEventListener('click', function() { playerPick('paper') });
-pickScissors.addEventListener('click', function() { playerPick('scissors') });
+    pickPaper = document.getElementById('js-playerPick_paper'),
+    pickScissors = document.getElementById('js-playerPick_scissors');
+    pickRock.addEventListener('click', function() { playerPick('rock') });
+    pickPaper.addEventListener('click', function() { playerPick('paper') });
+    pickScissors.addEventListener('click', function() { playerPick('scissors') });
 
 //funkcja wyboru gracza
 
@@ -112,17 +112,9 @@ function checkRoundWinner(playerPick, computerPick) {
         playerResultElem.innerHTML = "Lost :(";
         computer.score++;
     } 
-setGamePoints();
-if (player.score == 10 ) {
-        playerResultElem.innerHTML = "You are the WINNER!!!"
-        computerResultElem.innerHTML = "You lost";
-        pickElem.style.display = 'none';
-    } else if (computer.score == 10) {
-        computerResultElem.innerHTML = "You are the WINNER!!!";
-        playerResultElem.innerHTML = "You lost"
-        pickElem.style.display = 'none';
-    }
+setGamePoints(); 
 }
+
 
 
 //funkcaj sprawdzająca wynik
@@ -139,5 +131,23 @@ function playerPick(playerPick) {
 function setGamePoints() {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
-    
+    if (player.score == 10 ) {
+        playerResultElem.innerHTML = "You are the WINNER!!!";
+        computerResultElem.innerHTML = "You lost";
+        pickElem.style.display = 'none';
+        player.score = 0;
+        computer.score = 0;
+        setTimeout(setGamePoints, 6000);
+        newGameBtn.innerText = 'Jeszcze raz';
+        newGameElem.style.display = 'block';   
+    } else if (computer.score == 10) {
+        computerResultElem.innerHTML = "You are the WINNER!!!";
+        playerResultElem.innerHTML = "You lost";
+        pickElem.style.display = 'none';
+        player.score = 0;
+        computer.score = 0;
+        setTimeout(setGamePoints, 6000);
+        newGameBtn.innerText = 'Jeszcze raz';
+        newGameElem.style.display = 'block';
+    }
 }
